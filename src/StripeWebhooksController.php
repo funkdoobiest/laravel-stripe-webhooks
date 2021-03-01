@@ -3,7 +3,6 @@
 namespace Spatie\StripeWebhooks;
 
 use Illuminate\Http\Request;
-use Spatie\WebhookClient\Models\WebhookCall;
 use Spatie\WebhookClient\WebhookConfig;
 use Spatie\WebhookClient\WebhookProcessor;
 use Spatie\WebhookClient\WebhookProfile\ProcessEverythingWebhookProfile;
