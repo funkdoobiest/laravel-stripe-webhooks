@@ -2,8 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-stripe-webhooks.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-stripe-webhooks)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/spatie/laravel-stripe-webhooks/run-tests?label=tests)
-[![StyleCI](https://styleci.io/repos/105920179/shield?branch=master)](https://styleci.io/repos/105920179)
-[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-stripe-webhooks.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-stripe-webhooks)
+![Check & fix styling](https://github.com/spatie/laravel-stripe-webhooks/workflows/Check%20&%20fix%20styling/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-stripe-webhooks.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-stripe-webhooks)
 
 [Stripe](https://stripe.com) can notify your application of events using webhooks. This package can help you handle those webhooks. Out of the box it will verify the Stripe signature of all incoming requests. All valid calls will be logged to the database. You can easily define jobs or events that should be dispatched when specific events hit your app.
@@ -14,9 +13,7 @@ Before using this package we highly recommend reading [the entire documentation 
 
 ## Support us
 
-Learn how to create a package like this one, by watching our premium video course:
-
-[![Laravel Package training](https://spatie.be/github/package-training.jpg)](https://laravelpackage.training)
+[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-stripe-webhooks.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-stripe-webhooks)
 
 We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
 
@@ -45,7 +42,6 @@ This is the contents of the config file that will be published at `config/stripe
 
 ```php
 return [
-
     /*
      * Stripe will sign each webhook using a secret. You can find the used secret at the
      * webhook configuration settings: https://dashboard.stripe.com/account/webhooks.
@@ -69,8 +65,13 @@ return [
      * Spatie\StripeWebhooks\ProcessStripeWebhookJob.
      */
     'model' => \Spatie\StripeWebhooks\ProcessStripeWebhookJob::class,
+    
+    /*
+     * When disabled, the package will not verify if the signature is valid.
+     * This can be handy in local environments.
+     */
+    'verify_signature' => env('STRIPE_SIGNATURE_VERIFY', true),
 ];
-
 ```
 
 In the `signing_secret` key of the config file you should add a valid webhook secret. You can find the secret used at [the webhook configuration settings on the Stripe dashboard](https://dashboard.stripe.com/account/webhooks).
